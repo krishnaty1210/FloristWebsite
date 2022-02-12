@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+   <meta charset="utf-8"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+   <style>
+    header{ 
+       background-image: url('images/background.jpeg') ;
+       opacity: 0.75;
+    }
+     #DIV {
+       margin-top: 55px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+  <% include client/header %> 
+  <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+    <p>THE INFINITY PETALS</p>
+  </div>
+</header>
+
+
+ 
+  <main>
+    <div class="container">
+      <% include client/latestProduct %> 
+    </div>
+  </main>
+    
+    <footer>
+      <% include client/footer %> 
+    </footer>
+  </body>
+</html>
