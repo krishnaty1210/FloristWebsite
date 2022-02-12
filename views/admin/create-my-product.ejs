@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>Add Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      header{ 
+         background-image: url('../images/background.jpeg') ;
+         opacity: 0.75;
+      }
+       #DIV {
+         margin-top: 55px;
+      }
+    </style>
+  </head>
+<body>
+<header>
+<% include adminHeader %>
+ <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+      <p>THE INFINITY PETALS - ADMIN WEBPAGE</p>
+    </div>
+</header>
+    <% if(success != "") { %>
+        <div class="alert">
+          <b><%= success %> 
+         <% } %>
+          </b></div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-9" style="text-align: center;align-items: center;align-self: center;align-content: center;">
+        <a href="/admin/ViewProduct"><h2><u>View Products</u></h2></a></br></br>
+        <h3 style="text-align: center;">Add a new product:</h3></br>
+        <div style=" text-align: center; width:70%">
+        </div>
+        <form class="form-group" action="/admin/create-my-product" method="post"  enctype="multipart/form-data">
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name of the Product" name="product" required>
+          </div>
+
+          <div class="form-group">
+            <h5><label for="categorydetails">Description:</label></h5>
+            <div>
+              <textarea type="text" class="form-control" name="productdetails" placeholder=" Description"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+              <h5><label for="categoryprice">Cost of the Product in Dollars:</label></h5>
+              <div>
+              <input type="text" class="form-control" placeholder="Cost" name="price" required>
+              </div>
+          </div>
+
+          <div>
+              <h5><label for="categoryselect">Category</label></h5>
+              <div>
+              <select class="form-control" name="category" >
+                  <% categoryRecord.forEach(function(data){%>
+                      <option value="<%= data.name %>"><%= data.name %></option>
+                  <% }) %>
+              </select>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <h5><label for="icode">Upload Image</label></h5>
+            <input type="file" class="form-control" name="file" multiple required>
+
+          </div> 
+
+          </br>
+          <div>
+            <input type="submit" name="submit" value="Proceed to add Product" class="btn btn-warning">   
+          </div>  
+          </form>
+
+      </div>
+      <div class="col"></div>
+
+    </div>
+</body>
+</html>

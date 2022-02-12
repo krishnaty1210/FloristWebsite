@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <title>Edit Products</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            .my_product{background:#000;position:relative}
+            .my_product:after{background:rgba(0,0,0,.7);position:absolute;top:0;left:-30%;bottom:0;right:70%;transform:skew(20deg) translateX(-75%)}
+            .my_product:hover:after{transform:skew(20deg) translateX(0)}
+            .my_product img{width:100%;height:auto}
+            .my_product:hover img{opacity:.5}
+            .my_product .box-content{padding:20px;text-align:right;position:absolute;top:0;right:0;z-index:1}
+            .my_product .icon,.box7 .icon{padding:0;list-style:none}
+            .box10 .icon li a,.box11,.box12,.box13,.box14,.my_product .icon li a,.box7,.box7 .icon li a,.box8,.box8 .icon li a{text-align:center}
+            .my_product .title{font-size:20px;font-weight:900;color:#fff;margin:0 0 10px;transform:scale(0)}
+            .my_product:hover .title{transform:scale(1)}
+            .my_product .icon li,.my_product .post{opacity:0;transform:translateX(40px);transition:all .35s ease 0s}
+            .my_product .post{display:block;font-size:14px;color:#fff;margin-bottom:5px}
+            .my_product .icon{display:inline-block;margin:0}
+            .my_product:hover .icon li,.my_product:hover .post{opacity:1;transform:translateX(0)}
+            .my_product:hover .icon li:first-child{transition-delay:.1s}
+            .my_product:hover .icon li:nth-child(2){transition-delay:.2s}
+            .my_product .icon li a{display:block;width:35px;height:35px;line-height:35px;background:#fff;font-size:18px;color:#605f5f;margin-bottom:5px;transition:all .35s ease}
+            .my_product .icon li a:hover{background:#605f5f;color:#fff}
+            @media only screen and (max-width:990px){.my_product{margin-bottom:30px}}
+
+        header{ 
+           background-image: url('../images/background.jpeg') ;
+           opacity: 0.75;
+        }
+         #DIV {
+           margin-top: 55px;
+        }
+      </style>
+    </head>
+<body>
+  <header>
+  <% include adminHeader %>
+   <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+      <p>THE INFINITY PETALS - ADMIN WEBPAGE</p>
+    </div>
+</header>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-9">
+                <a href="/admin/create-my-product"><h2><u>Add a New Product</u></h2></a></br></br>
+            </div>
+            <div class="col"></div>
+        </div> 
+
+       <div class="container mt-25">           
+        <div class="row mt-20">
+            <%if (prodectRecord.length >0){ %>
+                <% for (var i = 0; i < prodectRecord.length; i++) { %>
+            <div class="col-5">
+                <div class="my_product">
+                    <img src="/uploads/<%= prodectRecord[i].images[0] %> " style="height: 300px;">
+                    <div class="box-content">
+                        <h2 class="title"><%= prodectRecord[i].brand %> </h2>
+                        <span class="post"> <em> Cost of the Product : </em><%= prodectRecord[i].price  %> </span>
+                        <ul class="icon">
+                            <li>
+                                <a type="button" data-toggle="modal" data-target="#myModal<%= prodectRecord[i]._id  %> "> 
+                                    <i class="fa fa-eye" style="font-size:xx-large; color: blue;"></i>
+                                </a> 
+                            </li>
+                            <li>
+                                <a style="height:50px;" class="btn btn-warning " href="/admin/ViewProduct/delete/<%=prodectRecord[i]._id %>"> <i class="fa fa-trash"></i> </a>
+                            </li>
+                            <li>
+                                <a style="height:50px;" class="btn btn-warning " href="/admin/update-product/edit/<%=prodectRecord[i]._id %>"> <i class="fa fa-edit"></i> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                    <h2 style="text-align: center;" ><%= prodectRecord[i].brand %> </h2>
+                </div>
+             
+              <div class="modal fade" id="myModal<%= prodectRecord[i]._id %>" role="dialog">
+                <div class="modal-dialog">
+                
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                   
+                      <h4 class="modal-title" style="text-align: center;"><b><%= prodectRecord[i].brand %></b></h4>
+                    </div>
+                    <div style="width: 100%;">
+                    <div style="width: 50%; float: left;">
+                        <div class="modal-body">
+                            <img src="/uploads/<%= prodectRecord[i].images[0] %>" alt="cImage" style="height:200px;width:200px;margin:5px auto;">
+                        </div>
+                    </div>
+                   
+                    <div style="width: 65%; float: right;">
+                        <div class="modal-body">
+                        <em>Name: </em><%= prodectRecord[i].product %>
+                        </div>
+                        <div class="modal-body">
+                            <em>Cost: </em> <%= prodectRecord[i].price %>
+                        </div>
+                        <div class="modal-body">
+                            <em>Category: </em> <%= prodectRecord[i].category %>
+                        </div>
+                        <div class="modal-body">
+                        <em>Details: </em> <%= prodectRecord[i].details %>
+                        </div>              
+
+                        
+
+                    </div>
+                </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Close</button>
+                        </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            <% } }else{ %>
+                <h3>
+                  No Products found
+                </h3>
+              <% } %>
+        
+        </div>
+    </div>
+
+
+      <div class="container">
+        <% if (pages > 0) { %>
+          <ul class="pagination text-center">
+              <% if (current == 1) { %>
+                  <li class="disabled"><a>First</a></li>
+              <% } else { %>
+                  <li><a href="/admin/ViewProduct/1">First</a></li>
+              <% } %>
+              <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+              <% if (i !== 1) { %>
+                  <li class="disabled"><a>...</a></li>
+              <% } %>
+              <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                  <% if (i == current) { %>
+                      <li class="active"><a><%= i %></a></li>
+                  <% } else { %>
+                      <li><a href="/admin/ViewProduct/<%= i %>"><%= i %></a></li>
+                  <% } %>
+                  <% if (i == Number(current) + 4 && i < pages) { %>
+                      <li class="disabled"><a>...</a></li>
+                  <% } %>
+              <% } %>
+              <% if (current == pages) { %>
+                  <li class="disabled"><a>Last</a></li>
+              <% } else { %>
+                  <li><a href="/admin/ViewProduct/<%= pages %>">Last</a></li>
+              <% } %>
+          </ul>
+      <% } %>
+    </div>
+
+
+    
+    </body>
+</html>

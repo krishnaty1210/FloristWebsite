@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Contact Admin Details</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            header{ 
+               background-image: url('../images/background.jpeg') ;
+               opacity: 0.75;
+            }
+             #DIV {
+               margin-top: 55px;
+            }
+          </style>
+        </head>
+    <body>
+      <header>
+      <% include adminHeader %>
+      <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+        <p>THE INFINITY PETALS - ADMIN WEBPAGE</p>
+      </div>
+    </header>
+  <div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Mail Subject</th>
+        <th scope="col">Contact Number</th>        
+        <th scope="col">Action</th>
+      </tr>   
+    </thead>
+    <tbody>
+
+        <% if(contactRecord.length > 0) {%> 
+            <% contactRecord.forEach(function(data){ %> 
+      <tr>
+        <td> <%= data.name %> </td>
+        <td> <%= data.subject %> </td>
+        <td> <%= data.mobile %> </td>        
+        <th>
+            <a type="button" data-toggle="modal" data-target="#myModal<%= data._id  %> "> 
+                <i class="fa fa-eye" style="font-size:large; color: black;"></i>            </a>   
+            <a class="btn btn-danger " href="/admin/viewContact/delete/<%=data._id %>"> <i class="fa fa-trash"></i> </a>    
+        </th>
+
+      </tr>
+
+
+        <div class="modal fade" id="myModal<%= data._id %>" role="dialog">
+            <div class="modal-dialog">         
+
+              <div class="modal-content">
+                <div class="modal-header">
+
+                  <h4 class="modal-title" style="text-align: center;"><b><%= data.name %></b></h4>
+                </div>                    
+            
+                <div >
+                    <div class="modal-body">
+                    <b>Subject</b>  <%= data.subject %>
+                    </div>
+                    <div class="modal-body">
+                        <b>Email</b> <%= data.email %>
+                    </div>
+                    <div class="modal-body">
+                        <b>Message</b> <%= data.message %>
+                    </div>
+
+                    
+            </div>
+                    <div class="modal-footer">
+
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    </div>
+                
+              </div>
+
+      <% }) %> 
+    <% } else { %> 
+        <p style="font-size: xx-large;text-align: center;">Zero Records present</p>
+    <% } %> 
+    </tbody>
+  </table>
+  </div>
+
+        <div class="container">
+          <% if (pages > 0) { %>
+            <ul class="pagination text-center">
+                <% if (current == 1) { %>
+                    <li class="disabled"><a>First</a></li>
+                <% } else { %>
+                    <li><a href="/admin/viewContact/1">First</a></li>
+                <% } %>
+                <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                <% if (i !== 1) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                    <% if (i == current) { %>
+                        <li class="active"><a><%= i %></a></li>
+                    <% } else { %>
+                        <li><a href="/admin/viewContact/<%= i %>"><%= i %></a></li>
+                    <% } %>
+                    <% if (i == Number(current) + 4 && i < pages) { %>
+                        <li class="disabled"><a>...</a></li>
+                    <% } %>
+                <% } %>
+                <% if (current == pages) { %>
+                    <li class="disabled"><a>Last</a></li>
+                <% } else { %>
+                    <li><a href="/admin/viewContact/<%= pages %>">Last</a></li>
+                <% } %>
+            </ul>
+        <% } %>
+      </div>
+</body>
+</html>

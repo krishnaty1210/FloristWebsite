@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %> </title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+      header{ 
+         background-image: url('../../../images/background.jpeg') ;
+         opacity: 0.75;
+      }
+       #DIV {
+         margin-top: 55px;
+      }
+    </style>
+  </head>
+<body>
+<header>
+<% include adminHeader %>
+<div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+  <p>THE INFINITY PETALS- ADMIN WEBPAGE</p>
+</div>
+</header> 
+    <% if(success != "") { %>
+        <div class="alert alert-success">
+          <strong>Success!</strong> <%= success %> 
+         <% } %>
+        </div>
+<div class="container" style="width:50%">
+    <a class="btn btn-info" href="/admin/ViewProduct" >View Product</a>
+
+  <h2 style="text-align: center;">Update Product</h2>
+  <div style=" text-align: center;">
+  </div>
+  <form class="form-group" action="/admin/update-product/<%= productRecord._id %> " method="post"  enctype="multipart/form-data">
+
+    <input type="hidden" name="id" value="<%= productRecord._id %> ">
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Product Name" name="product" value="<%= productRecord.product %>"  required>
+    </div>
+
+      <div class="form-group">
+                  <label for="categorydetails" class="col-md-3 control-label">Product Details</label>
+                  <div class="col-md-9">
+                    <textarea type="text" class="form-control" name="productdetails" placeholder=" Enter Details" id="editor" cols="30" rows="10"><%= productRecord.details %></textarea>
+                  </div>
+              </div>
+
+    <div class="form-group">
+        <label for="categoryprice" class="col-md-3 control-label">Product Price</label>
+         <div class="col-md-9">
+        <input type="text" class="form-control" placeholder="Price" name="price" value="<%= productRecord.price %>" required>
+    </div>
+    </div>
+
+    <div>
+        <label for="categoryselect" class="col-md-3 control-label">Category</label>
+        <div class="col-md-9">
+        <select class="form-control" name="category" >
+            <% categoryRecord.forEach(function(data){%>
+            <option value="<%= data.name %>" <% if(data.name == productRecord.category) {%>selected<%}%>><%= data.name %></option>
+            <% }) %>   
+        </select>
+        </div>
+    </div>
+
+        <div class="form-group">
+        <label for="icode" class="col-md-3 control-label" > Brand Image</label>
+        <!-- <div class="col-md-9"> -->
+            <input type="file" class="form-control" name="file" multiple required>
+        <!-- </div> -->
+    </div> 
+
+        <div class="col-md-offset-3 col-md-9">
+            <span></span><br>
+         <input type="submit" name="submit" value="Update Product" class="btn btn-primary">  
+        </div>  
+    </form>
+</div>
+
+</body>
+</html>

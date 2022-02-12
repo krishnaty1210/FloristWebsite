@@ -1,0 +1,196 @@
+<html>
+<head>
+  <title>ADMIN-View Orders</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    header{ 
+       background-image: url('../images/background.jpeg') ;
+       opacity: 0.75;
+    }
+     #DIV {
+       margin-top: 55px;
+    }
+  </style>
+</head>
+<body>
+<header>
+<% include adminHeader %>
+<div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+  <p>THE INFINITY PETALS - ADMIN WEBPAGE</p>
+</div>
+</header>
+
+  <div class="container">
+    <% if(orderRecord.length>0){ %>    
+
+    <ul>
+      <% for(var i=0; i<orderRecord.length; i++) { %>
+      <div>
+
+        <div class="panel-heading">
+
+          <li class="panel panel-default" >
+            <a style="float: left;" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= i %> ">
+              <h4><%= orderRecord[i].user[0].fName %></h4>
+            </a>
+
+            <a data-toggle="modal" data-target="#Modal<%=orderRecord[i]._id %>">
+              <i class="fa fa-eye"></i>
+            </a>
+
+            <a data-toggle="modal" style="margin-left: 450px;"  class="btn btn-warning" data-target="#myModal<%=orderRecord[i]._id %>">
+              <%= orderRecord[i].status %>
+            </a>
+
+            <a class="btn btn-danger " href="/admin/viewOrder/delete/<%=orderRecord[i]._id %>"> <i  class="fa fa-trash"></i>
+            </a>
+            <p style="float: right;"><%= new Date(orderRecord[i].time_of_creation).toLocaleString() %> </p>
+          </li>
+        </div> 
+
+      <div class="modal fade" id="Modal<%=orderRecord[i]._id %>" role="dialog">
+        <div class="modal-dialog">
+
+
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <h4 class="modal-title" style="text-align: center;"><b><%=orderRecord[i].name %></b></h4>
+            </div>
+
+            <div>
+              <div class="modal-body">
+                <h5><strong>User Email: </strong><%=orderRecord[i].user[0].email %> </h5>
+              </div>
+              <div class="modal-body">
+                <h5><strong>User City: </strong><%=orderRecord[i].user[0].city %> </h5>
+             </div>
+             <div class="modal-body">
+              <h5><strong>User Address: </strong><%=orderRecord[i].user[0].address %> </h5>
+           </div>
+           <div class="modal-body">
+            <h5><strong>Special Message from User: </strong><%=orderRecord[i].message %> </h5>
+         </div>
+         
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+        <div id="collapse<%= i %>" class="panel-collapse collapse">
+          <table class="table">
+            <thead>
+              <tr>
+                <th> Product Name </th>
+                <th> Price </th>                
+                <th> Quantity </th>
+                <th> Total Price</th>
+              </tr>
+            </thead>
+
+            <div class="panel-body">
+
+              <% var products = orderRecord[i].product
+            for(var j=0; j<products.length; j++) { %>
+              <tbody>
+                <td><%= products[j].product %></td>
+                <td><%= products[j].price %></td>                
+                <td><%=orderRecord[i].amount_nos[j] %> </td>
+                <td><%=orderRecord[i].amount_nos[j] * products[j].price %></td>
+              </tbody>
+              <% } %>
+
+            </div>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="myModal<%=orderRecord[i]._id %>" role="dialog">
+        <div class="modal-dialog">
+
+
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <h4 class="modal-title" style="text-align: center;"><b><%=orderRecord[i].name %></b></h4>
+            </div>
+
+            <div>
+              <div class="modal-body">
+                <form action="/admin/viewOrder/<%=orderRecord[i]._id%>" method="POST">
+                  <div class="form-group">
+                    <select class="form-control" id="exampleFormControlSelect1" name='UpdateStatus'>
+                      <option>Initiated</option>
+                      <option>Order in Progress</option>
+                      <option>Delivered</option>
+                      <option>Cancel the Order</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-warning">Update</button>
+
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </ul>
+  </div>
+
+
+
+
+  <div class="container">
+    <% if (pages > 0) { %>
+    <ul class="pagination text-center">
+      <% if (current == 1) { %>
+      <li class="disabled"><a>First</a></li>
+      <% } else { %>
+      <li><a href="/admin/viewOrder/1">First</a></li>
+      <% } %>
+      <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+      <% if (i !== 1) { %>
+      <li class="disabled"><a>...</a></li>
+      <% } %>
+      <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+      <% if (i == current) { %>
+      <li class="active"><a><%= i %></a></li>
+      <% } else { %>
+      <li><a href="/admin/viewOrder/<%= i %>"><%= i %></a></li>
+      <% } %>
+      <% if (i == Number(current) + 4 && i < pages) { %>
+      <li class="disabled"><a>...</a></li>
+      <% } %>
+      <% } %>
+      <% if (current == pages) { %>
+      <li class="disabled"><a>Last</a></li>
+      <% } else { %>
+      <li><a href="/admin/viewOrder/<%= pages %>">Last</a></li>
+      <% } %>
+    </ul>
+    <% } %>
+
+    <% } else{ %>
+
+     <strong style="size: 30px; text-align: center;">No Orders as of now!</strong>
+
+    <% }%>
+
+  </div>
+
+
+
+</body>
+
+</html>

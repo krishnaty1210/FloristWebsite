@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Categories</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      header{ 
+         background-image: url('../images/background.jpeg') ;
+         opacity: 0.75;
+      }
+       #DIV {
+         margin-top: 55px;
+      }
+    </style>
+  </head>
+<body>
+<header>
+<% include adminHeader %>
+ <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+      <p>THE INFINITY PETALS - ADMIN WEBPAGE</p>
+    </div>
+</header>
+
+    <% if(success != "") { %>
+      <div class="alert alert-danger">        
+          <b><%= success %> 
+         <% } %>
+      </b></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-9" style="text-align: center;">          
+          <a href="/admin/ViewCategory"><h2><u>View Categories</u></h2></a></br>
+          <p><h2>Add a new Category : </h2></p></br>
+          <div class="container">   
+            <div class="panel panel-info">
+              <div class="panel-body" >
+                  <form action="/admin/create-my-category" class="form-horizontal" method="post"  role="form"  enctype="multipart/form-data">
+                      
+                      <div id="signupalert" style="display:none" class="alert alert-danger">
+                          <p>Alert-Error:</p>
+                          <span></span>
+                      </div>
+                          
+                      <div class="form-group">
+                          <h2><label for="categoryName">Category Name</label></h2>
+                          <div>
+                              <input type="text" class="form-control" name="categoryName" placeholder="Enter Category Name" required>
+                          </div>
+                      </div>
+                        
+                      <div class="form-group">
+                          <h2><label for="categorydetails">Description</label></h2>
+                          <!-- <div> -->
+                            <textarea type="text" class="form-control" name="categorydetails" placeholder=" Enter Category description"></textarea>
+                          <!-- </div> -->
+                      </div>
+                      <div class="form-group">                                              
+                          <div>
+                          <input type="submit" name="submit" value="Proceed to add Category" class="btn btn-warning">   
+                          </div>
+                      </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+
+
+</div>  
+
+</body>
+</html>

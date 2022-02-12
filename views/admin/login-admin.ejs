@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ADMIN LOGIN PAGE</title>    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>   
+    
+    <!-- <div class="row" style="padding: 40px;text-align: center;background: #1abc9c;color: white;font-size: 28px;"> -->
+      <div class="row" style="padding: 40px;text-align: center;background-image: url('images/background.jpeg') ;opacity: 0.75;
+      color: rgb(255, 255, 255);font-size: 28px;font-weight:bolder">
+      <div class="col"></div>
+      <div class="col" style="background-color: rgb(235, 235, 228); border-radius: 10px; font-weight: bolder;color: rgb(46, 88, 45);">
+        <p>THE INFINITY PETALS</p>
+        <p>ADMIN LOGIN</p>
+      </div>
+      <div class="col"></div>
+    </div>    
+
+    <div class="container" style="padding: 40px;color:lightslategrey;font-size: 28px;">
+      <div id="loginbox">
+        <form action="/admin" id="EmployeeForm" method="post">
+          <% if (msg != ''){ %>     
+            <div id="signupalert" class="alert alert-warning">
+              <p><%= msg %> </p>
+            </div>
+          <% } %>
+
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">
+              <h3>ADMIN USERNAME:</h3>
+              <input type="text" style="width: 90%;" class="form-control" name="uname" placeholder="ADMIN'S USERNAME" required>
+            </div>
+            <div class="col"></div>
+          </div>
+                            
+          <div class="row">
+            <div class="col"></div>
+            <div class="col" >
+              <h3>ADMIN PASSWORD:</h3>
+              <input type="password" style="width: 90%;" class="form-control" name="password" placeholder="ADMIN'S PASSWORD" required>
+            </div>
+            <div class="col"></div>
+          </div>
+             
+          <!-- <div class="row" style="padding-left: 90px;margin: 0px;"> -->
+          <div class="row" style="padding-top: 20px;">
+            <div class="col"></div>
+            <div class="col">
+              <input type="submit" name="submit" value="Proceed to Login" class="btn btn-danger">
+            </div>
+            <div class="col"></div>
+          </div>            
+
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

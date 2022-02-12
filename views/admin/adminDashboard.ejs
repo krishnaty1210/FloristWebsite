@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>ADMIN HOMEPAGE</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <style>
+        header{ 
+           background-image: url('../images/background.jpeg') ;
+           opacity: 0.75;
+        }
+         #DIV {
+           margin-top: 55px;
+        }
+      </style>
+    </head>
+<body>
+  <header>
+  <% include adminHeader %>
+   <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+      <p>THE INFINITY PETALS - ADMIN WEBPAGE</p>
+    </div>
+</header>
+  
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-9">
+      <table>
+        <tr>
+          <td style="padding: 10px;">
+            <a class="btn" style="background-color: rgb(214, 173, 212);" href="/admin/viewAccount">Admin Account details
+              <span class="badge badge-warning"><%= countSignup %> </span>
+            </a>       
+          </td>
+
+          <td style="padding: 10px;">
+            <a class="btn" style="background-color: rgb(214, 173, 212);" href="/admin/viewContact">Contact details
+              <span class="badge badge-warning"><%= countContact %> </span>
+            </a>
+          </td>  
+
+          <td style="padding: 10px;">
+            <a class="btn" style="background-color: rgb(214, 173, 212);" href="/admin/viewOrder">Edit Orders
+              <span class="badge badge-warning"><%= countOrder %> </span>
+            </a>        
+          </td>
+
+          <td style="padding: 10px;">
+            <a class="btn" style="background-color: rgb(214, 173, 212);" href="/admin/ViewCategory">Edit Categories
+              <span class="badge badge-warning"><%= countCategory %> </span>
+            </a>        
+          </td>
+
+          <td style="padding: 10px;">
+            <a class="btn" style="background-color: rgb(214, 173, 212);" href="/admin/ViewProduct">Edit Products
+              <span class="badge badge-warning"><%= countProduct %> </span>
+            </a>        
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col"></div>
+  </div>
+  
+</body>
+</html>
