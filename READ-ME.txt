@@ -1,0 +1,16 @@
+For this project to run,
+We need to create a MongoDB(localhost:27017) database 
+named infinityPetalsDB. The project will be running in
+localhost:3000.
+
+Admin Login will be available in localhost:3000/admin.
+
+Note: Create a user using register form and copy that document
+into admin_ids collection with only the following fields:
+username,email,password and time_of_creation
+
+Use these credentials as admin credentials and delete 
+the existing document from user_ids collection.
+
+Admin can add products and categories using the photos in
+public/images and public/uploads.
