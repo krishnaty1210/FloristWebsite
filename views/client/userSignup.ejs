@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="/javascript/Validation.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+    </style>
+  </head>
+  <body>
+
+    <!-- header{
+       
+      background-image: url('images/background.jpeg') ;
+      opacity: 0.75;
+      
+   } -->
+
+  <div class="row" style="padding: 40px;text-align: center;background-image: url('images/opacity_background.png') ;
+color: rgb(255, 255, 255);font-size: 28px;font-weight:bolder">
+    <div class="col"></div>
+    <div class="col" style="background-color: rgb(235, 235, 228); border-radius: 10px; font-weight: bolder;color: rgb(46, 88, 45);">
+      <p>THE INFINITY PETALS</p>
+      <p>USER REGISTER</p>
+    </div>
+    <div class="col"></div>
+  </div>    
+
+    
+    <!-- login_form -->
+    <div class="container">
+      <div class="row">
+        
+      <div id="signupbox" style="padding-top:20px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            
+              <% if(msg!= '') { %> 
+                <p style="text-align: cProvide;">  <%= msg %> </p>
+              <% } %> 
+            
+
+            <form id="EmployeeForm" action="/signup" class="form-horizontal" method="post"  role="form">
+                          
+              <div id="signupalert" style="display:none" class="alert alert-danger">
+                <p>Error:</p>
+                  <span id="messageSpan"></span>
+              </div>
+                              
+              <div class="form-group">
+                <label for="username" class="col-md-3 control-label">USERNAME</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" name="uname" placeholder="Provide Your UserName ..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fName" class="col-md-3 control-label">FULL NAME</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" name="fName" placeholder="Provide Your Full Name ..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="col-md-3 control-label">EMAIL</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="formemail" name="email" placeholder="Provide Your Email ..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="phone" class="col-md-3 control-label">PHONE</label>
+                <div class="col-md-8">
+                  <input type="number" class="form-control" id="forphone" name="phone" placeholder="Provide Your Phone Number ..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="city" class="col-md-3 control-label">CITY</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" name="city" placeholder="Provide Your City ..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="address" class="col-md-3 control-label">ADDRESS</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" name="address" placeholder="Provide Your Address ..." required>
+                </div>
+              </div>
+
+                            
+              <div class="form-group">
+                <label for="password" class="col-md-3 control-label">PASSWORD</label>
+                <div class="col-md-8">
+                  <input type="password" class="form-control" name="password" id = "formpassword" placeholder="Provide Your Password ..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="confpassword" class="col-md-3 control-label">CONFIRM PASSWORD</label>
+                <div class="col-md-8">
+                  <input type="password" class="form-control" name="confpassword" id = "formcnfpassword" placeholder="Provide Your confirm Password ..." required>
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <!-- Button -->                                        
+                <div class="col-md-offset-3 col-md-8">
+                <input type="submit" name="submit" value="Create Account" style="min-width:150px;" onClick="return myUserValidationFunc();" class="btn btn-danger">
+                <h4>Already have an account&nbsp;&nbsp;&nbsp;<a href="/login">LOGIN</a></h4>  
+                </div>
+              </div> 
+
+              <!-- <h4>Already have an account &nbsp;&nbsp;&nbsp;<a href="/login"> LOGIN</a></h4> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  </body>
+</html>

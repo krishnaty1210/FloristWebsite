@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %> </title>
+        <style>
+            header{ 
+               background-image: url('images/background.jpeg') ;
+               opacity: 0.75;
+            }
+             #DIV {
+               margin-top: 55px;
+            }
+          </style>
+        </head>
+        
+        <body>
+          <header>
+          <% include header %> 
+          <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+            <p>THE INFINITY PETALS</p>
+          </div>
+        </header>
+        <div class="container">
+            <h1>My Shopping</h1>
+            <% if(userOrder.length > 0){ %>
+                <% userOrder.forEach(function (data) { %>
+                    <% data.product.forEach(function(rec){ %> 
+                        <table  class="table">
+                            <tr>
+                                <td> 
+                                    <img src="/uploads/<%= rec.images[0] %>" alt="cImage" style="max-height: 200px;" >
+                                </td>
+                    
+                                <th><b>Brand: </b> </th>
+                                <td> <%= rec.brand %> </td>
+
+                                <th><b>Price</b></th>
+                                <td><%= rec.price %> </td>
+
+                                <th><b>Color</b></th>
+                                <td><%= rec.color %> </td>
+                              </tr>
+                        </table>
+                            
+                        
+                    <% }) %> 
+                <% }) %> 
+
+            <% } else{ %> 
+                <h4 style="text-align: center;">No Shopping!</h4>
+            <% } %> 
+        </div>
+        <% include footer %> 
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title><%= title %> </title>
+    <style>
+
+/* html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+} */
+header{ 
+           background-image: url('../images/background.jpeg') ;
+           opacity: 0.75;
+        }
+         #DIV {
+           margin-top: 55px;
+        }
+.container1 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+/* Product Price */
+.product-price {
+  display: flex;
+  align-items: center;
+}
+ 
+.product-price span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+ 
+.cart-btn {
+  display: inline-block;
+  background-color: #7DC855;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+}
+.cart-btn:hover {
+  background-color: #64af3d;
+}
+/* Product Description */
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product-description span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.product-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+.product-description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
+/* Left Column */
+.left-column img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+ 
+.left-column img.active {
+  opacity: 1;
+}
+/* Columns */
+.left-column {
+  width: 65%;
+  position: relative;
+}
+ 
+.right-column {
+  width: 35%;
+  margin-top: 60px;
+}
+
+      </style>
+    </head>
+<body>
+  <header>
+  <% include header %>
+   <div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+      <p>THE INFINITY PETALS</p>
+    </div>
+</header>
+                  <div class="container1">
+ 
+                    <%if (prodectRecord.length > 0) {%>
+                      <% for (var i = 0; i < prodectRecord.length; i++){%>
+                    <div class="left-column">
+
+                      <img data-image="mainImage" class="active" src="/uploads/<%= prodectRecord[i].images[0] %>" alt="prodect" style="height: 600px; width: 600px; padding-top: 60;  border:2px solid #fff; box-shadow: 10px 10px 5px #ccc;
+                      -moz-box-shadow: 10px 10px 5px #ccc;
+                      -webkit-box-shadow: 10px 10px 5px #ccc;
+                      -khtml-box-shadow: 10px 10px 5px #ccc;">
+                    </div>
+                   
+                    <div class="right-column">
+                   
+                      <div class="product-description">
+                        <span><%= prodectRecord[i].category %></span>
+                        <h1><%= prodectRecord[i].product %></h1>
+                        <p><%= prodectRecord[i].details %></p>
+                      </div>
+                   
+                      <div class="product-price">
+                        <span><%= prodectRecord[i].price %>$</span>
+
+                        <a href="/buy-product/<%= prodectRecord[i]._id %>" type="button" class="cart-btn" style="background-color: rgb(145, 12, 145);color:whitesmoke;">Order Now</a>
+                        <a href="/add/<%= prodectRecord[i]._id  %> "  role="button">
+                      </div>
+                    </div>
+                  </div>
+
+                   <% } %> 
+            <% } else { %>
+                <h3 style="text-align: center;"> Product Not Found </h3>
+            <% } %>           
+        <% include footer %> 
+
+    </body>
+</html>

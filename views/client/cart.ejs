@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+
+        header{ 
+                   background-image: url('../images/background.jpeg') ;
+                   opacity: 0.75;
+                }
+                 #DIV {
+                   margin-top: 55px;
+                }
+                tbody tr:nth-child(odd) {background: rgb(231, 231, 231)}
+                tbody tr:nth-child(even) {background: #FFF}
+ 
+</style>
+</head>
+<body>
+<header>
+<% include header %>
+<!-- <div id="DIV" class="container">
+<h2 style="color: aliceblue; font-weight: bold;"><em>THE INFINITY PETALS - ADMIN WEBPAGE</em></h2>
+</div> -->
+<div id="DIV" style="background-color: rgb(235, 235, 228); font-weight: bolder;color: rgb(46, 88, 45);font-size: xx-large; width: fit-content; margin-left: 200px; " >
+    <p>THE INFINITY PETALS</p>
+  </div>
+</header>
+    <div class="container" style="margin-top: 30px;">
+        <table class=" table">
+            <thead>
+                <tr>
+                    <th> PRODUCTS</th>
+                    <th> ITEM NAME</th>
+                    <th> PRICE</th>
+                    <th> &nbsp;&nbsp;&nbsp;&nbsp;QUANTITY</th>
+                    <th> DELETE ITEM</th>
+                </tr>
+            </thead>
+            <% if(products != '') {%> 
+            <tbody>
+                <% products.forEach(function(data){ %> 
+                <tr>
+                    <td> <img src="/uploads/<%= data.item.images[0] %> " alt="prodect" style="max-width:200px;height: 120px; "></td>
+                    <td> <%= data.item.product %> </td>  
+                    <td> <%= data.item.price %>$ </td>
+                    <td>
+                        <a href="/reduce/<%= data.item._id %>" >
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                        </a>
+
+                        <span class="badge"> Quantity: <%= data.quantity %> </span>
+
+                        <a href="/increment/<%= data.item._id %>">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/remove/<%= data.item._id %>" class="btn btn-warning" style="margin-left:28px;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                <% }) %>
+              
+            </tbody>
+        </table>
+            <div style="float: right;">
+                <strong>Total Amount: <%= totalPrice %>$</strong>
+            </div>
+            <hr>
+            <div class="text-right">
+                <a href="/checkout" type="button" class="btn btn-success">Checkout</a>
+            </div>
+            <% } else {%>
+                <h4 class=" text-center text-info"> Your shopping cart is empty.</h4>
+            <% } %> 
+
+    </div>
+    <% include footer %> 
+</body>
